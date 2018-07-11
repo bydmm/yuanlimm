@@ -1,0 +1,26 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: moestock
+  username:
+  password:
+  host: 127.0.0.1
+  port: 3306
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PW'] %>
+  host: <%=  ENV['DB_HOST'] %>
+  port: 3306
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: <%= ENV['DB_NAME'] || 'moe_test' %>
+  username: <%= ENV['DB_USER'] || 'root' %>
+  password: <%= ENV['DB_PW'] %>
+  host: <%=  ENV['DB_HOST'] || '127.0.0.1' %>
+  port: 3306

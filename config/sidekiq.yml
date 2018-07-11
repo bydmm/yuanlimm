@@ -1,0 +1,8 @@
+---
+:concurrency: 1
+production:
+  :concurrency: 5
+:queues:
+  - matching
+  - default
+  - search

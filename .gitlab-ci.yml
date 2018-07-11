@@ -1,0 +1,38 @@
+stages:
+  - build
+  - test
+
+build_tags:
+  stage: build
+  only:
+    - tags
+  tags:
+    - builder
+  variables:
+    BUILD_NAME: 'moe_api:$CI_COMMIT_TAG'
+  script:
+    - docker build -t $BUILD_NAME ./
+    - docker tag $BUILD_NAME registry-vpc.cn-shenzhen.aliyuncs.com/example/$BUILD_NAME
+    - docker push registry-vpc.cn-shenzhen.aliyuncs.com/example/$BUILD_NAME
+
+test:
+  image: registry-vpc.cn-shenzhen.aliyuncs.com/example/$BUILD_NAME
+  services:
+    - mysql:5.7
+    - redis:latest
+  variables:
+    MYSQL_DATABASE: 'moe_test'
+    MYSQL_ROOT_PASSWORD: '1234'
+    BUILD_NAME: 'moe_api:$CI_COMMIT_TAG'
+  only:
+    - tags
+  script:
+    - export CACHE_URL=redis://redis:6379/11
+    - export REDIS_URL=redis://redis:6379/10
+    - export REDIS_PORT_6379_TCP_ADDR=redis
+    - export DB_NAME=$MYSQL_DATABASE
+    - export DB_HOST=mysql
+    - export DB_USER=root
+    - export DB_PW=$MYSQL_ROOT_PASSWORD
+    - export RAILS_ENV=test
+    - rake test

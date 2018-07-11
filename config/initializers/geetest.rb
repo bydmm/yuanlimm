@@ -1,0 +1,2 @@
+GEETEST_ID = ''
+GEETEST_KEY = ''
