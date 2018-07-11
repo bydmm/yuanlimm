@@ -16,7 +16,7 @@ Rails 5.2 + Mysql5.7 + Redis4.0
 
 搜索： 阿里云开放搜索
 
-验证码： 极限验证
+验证码： 极限验证 https://www.geetest.com/
 
 # 高速许愿工具
 
