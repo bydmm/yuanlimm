@@ -12,11 +12,25 @@ https://www.yuanlimm.com/#/about
 
 Rails 5.2 + Mysql5.7 + Redis4.0
 
-## 周边服务
+## 阿里云开放搜索
 
-搜索： 阿里云开放搜索
+本站使用了阿里云开放搜索的服务，由于阿里云开放搜索没有Ruby的SDK，所以自己简单的实现了一下。
 
-验证码： 极限验证 https://www.geetest.com/
+参考文档: https://help.aliyun.com/document_detail/29140.html?spm=a2c4g.11186623.6.601.T4fkKI
+
+基础类，用于验证: https://github.com/bydmm/yuanlimm/blob/master/app/models/open_search.rb
+
+推送数据:  https://github.com/bydmm/yuanlimm/blob/master/app/models/open_search_push.rb
+
+搜索API:  https://github.com/bydmm/yuanlimm/blob/master/app/models/open_search_search.rb
+
+## 极限验证
+
+本站的验证码服务都使用的是极限验证提供的滑块验证码，由于极限验证没有Ruby SDK，所以仿造python版本的实现了一个
+
+极限验证： http://www.geetest.com/
+
+实现地址： https://github.com/bydmm/yuanlimm/blob/master/app/models/geetest_lib.rb
 
 # 高速许愿工具
 
